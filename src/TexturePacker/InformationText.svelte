@@ -17,6 +17,7 @@
   export let showTimer;
   export let executionTime;
   export let missed;
+  export let windowMode;
 </script>
 
 <div>
@@ -90,6 +91,12 @@
         milliseconds
       </p>
     {/if}
+  {/if}
+  {#if windowMode}
+    <p class="failure">
+      NOTE: You can change the rectangle array by going back to Input Mode and
+      Going to Options
+    </p>
   {/if}
 </div>
 

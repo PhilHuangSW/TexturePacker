@@ -12,12 +12,14 @@
   import LoadingSpinner from "./UI/LoadingSpinner.svelte";
   import Navbar from "./UI/Navbar.svelte";
   import Footer from "./UI/Footer.svelte";
+  import Button from "./UI/Button.svelte";
   import ConfigureInputs from "./TexturePacker/ConfigureInputs.svelte";
   import MainButtons from "./TexturePacker/MainButtons.svelte";
   import ResetButtons from "./TexturePacker/ResetButtons.svelte";
   import InformationText from "./TexturePacker/InformationText.svelte";
   import SVG from "./TexturePacker/SVG.svelte";
   import RectanglesText from "./TexturePacker/RectanglesText.svelte";
+  import WindowModeDisplay from "./TexturePacker/WindowModeDisplay.svelte";
 
   let executionTime;
   let area = 1600;
@@ -29,6 +31,9 @@
   let showTimer = true;
   let loading = false;
   let firstRunForTimed = true;
+  let windowMode = false;
+  let innerWidth = 0;
+  let innerHeight = 0;
 
   class Grid {
     constructor(width, height, x, y) {
@@ -250,6 +255,35 @@
     area = $width * $height;
   };
 
+  const toggleWindowMode = () => {
+    windowMode = !windowMode;
+    if (windowMode) {
+      resetting();
+      $width = Math.floor(innerWidth / 15);
+      $height = Math.floor(innerHeight / 15);
+      compute();
+    }
+    scale = 10;
+  };
+
+  const calculateWidth = () => {
+    if (windowMode) {
+      $width = Math.floor(innerWidth / 15);
+      calculateArea();
+      resetting();
+      compute();
+    }
+  };
+
+  const calculateHeight = () => {
+    if (windowMode) {
+      $height = Math.floor(innerHeight / 15);
+      calculateArea();
+      resetting();
+      compute();
+    }
+  };
+
   $: {
     if ($width < 10 && $height < 10) {
       scale = 50;
@@ -269,48 +303,78 @@
   }
   $: $width && calculateArea();
   $: $height && calculateArea();
+  $: innerWidth && calculateWidth();
+  $: innerHeight && calculateHeight();
 </script>
 
 <!-- Simple navbar, unfortunately the anchor tag renders the entire navbar as a link, will need to further look into css to change -->
 <Navbar title="Texture Packer" />
 
-{#if !$reset}
-  <!-- Input Options -->
-  <ConfigureInputs />
+<!-- Window Mode button that toggles Window Mode / Input Mode -->
+<Button
+  mode="failure"
+  style="position: absolute; top:0; right:0; height: 3rem;"
+  on:click={toggleWindowMode}
+  >{windowMode ? "Input Mode" : "Window Mode"}</Button
+>
+<!-- Svelte is nice here and allows use to grab the window width and height and allows us to dynamically change our own width and height for our grid -->
+<svelte:window bind:innerWidth bind:innerHeight />
 
-  <!-- Buttons for Calculate, Show Options, Show Text/Grid, Timed Intervals -->
-  <MainButtons
-    on:compute={compute}
-    on:timedCompute={timedCompute}
-    on:showTextOrGrid={showTextOrGrid}
+{#if !windowMode}
+  {#if !$reset}
+    <!-- Input Options -->
+    <ConfigureInputs />
+
+    <!-- Buttons for Calculate, Show Options, Show Text/Grid, Timed Intervals -->
+    <MainButtons
+      on:compute={compute}
+      on:timedCompute={timedCompute}
+      on:showTextOrGrid={showTextOrGrid}
+    />
+  {:else if loading}
+    <!-- Only displays spinner when doing a Timed Interval calculation -->
+    <LoadingSpinner {showTextOrGrid} />
+  {:else}
+    <!-- Buttons for Reset and Show Text/Grid -->
+    <ResetButtons on:resetting={resetting} on:showTextOrGrid={showTextOrGrid} />
+  {/if}
+  <!-- Information text display -->
+  <!-- ALWAYS displays Total rectangle area and grid area -->
+  <!-- Displays statistics once a compute is completed -->
+  <InformationText
+    {area}
+    {output}
+    {filledArea}
+    {executionTime}
+    {showTimer}
+    {missed}
   />
-{:else if loading}
-  <!-- Only displays spinner when doing a Timed Interval calculation -->
-  <LoadingSpinner {showTextOrGrid} />
-{:else}
-  <!-- Buttons for Reset and Show Text/Grid -->
-  <ResetButtons on:resetting={resetting} on:showTextOrGrid={showTextOrGrid} />
-{/if}
 
-<!-- Information text display -->
-<!-- ALWAYS displays Total rectangle area and grid area -->
-<!-- Displays statistics once a compute is completed -->
-<InformationText
-  {area}
-  {output}
-  {filledArea}
-  {executionTime}
-  {showTimer}
-  {missed}
-/>
-<!-- Displays either Grid or Text to display data -->
-{#if !$stats}
-  <!-- Grid based display -->
+  <!-- Displays either Grid or Text to display data -->
+  {#if !$stats}
+    <!-- Grid based display -->
+    <SVG {scale} {output} />
+
+    <!-- Text based display -->
+  {:else}
+    <RectanglesText {output} {missed} />
+  {/if}
+
+  <!-- Windowed Mode allows a user to change the size of the window and it automatically computes EACH time the width or height changes. Although not directly in Windowed Mode, you can change the rectangle array by going back to Input Mode, Show Options and change values for min/max size and number of rectangles. Once changed, head back to Window Mode and play around some more  -->
+{:else}
+  <WindowModeDisplay />
+  <InformationText
+    {area}
+    {output}
+    {filledArea}
+    {executionTime}
+    {showTimer}
+    {missed}
+    {windowMode}
+  />
   <SVG {scale} {output} />
-
-  <!-- Text based display -->
-{:else}
   <RectanglesText {output} {missed} />
 {/if}
 
-<Footer footerInformation="Made with Svelte. Created by Philip Huang 2021." />
+<!-- Simple footer with same styling as navbar, links to GitHub repository -->
+<Footer />

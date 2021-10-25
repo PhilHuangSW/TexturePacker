@@ -67,22 +67,21 @@
 <!-- "Show Less" reveals 20 less rectangles -->
 {#if showCount < $rectangles.length}
   <div class="showMoreAndAll">
-    <Button
-      on:click={() => (showCount += 20)}
-      tooltip="Reveal 20 more rectangles">Show More</Button
+    <Button on:click={() => (showCount += 20)} tooltip="Reveal more rectangles"
+      >Show More</Button
     >
     {#if showCount > 20}
       <Button
         on:click={() => (showCount -= 20)}
         mode="failure"
         style="margin-left: 1.5rem"
-        tooltip="Hide 20 rectangles">Show Less</Button
+        tooltip="Reveal less rectangles">Show Less</Button
       >
     {/if}
     <Button
       on:click={() => (showCount += $rectangles.length)}
       style="margin-left: 1.5rem;"
-      tooltip="Show all {rectangles.length} rectangles">Show All</Button
+      tooltip="Show all {$rectangles.length} rectangles">Show All</Button
     >
   </div>
 {/if}

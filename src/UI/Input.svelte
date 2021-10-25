@@ -3,6 +3,7 @@
   export let labelFor = "";
   export let value = 0;
   export let min = 1;
+  export let disabled = null;
 </script>
 
 <div data-tooltip={tooltip}>
@@ -12,5 +13,11 @@
     </Input> -->
     <slot />
   </label>
-  <input {value} {min} type="number" on:input on:change />
+  <input {value} {min} {disabled} type="number" on:input on:change />
 </div>
+
+<style>
+  :disabled {
+    color: black;
+  }
+</style>

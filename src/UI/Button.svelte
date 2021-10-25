@@ -1,5 +1,5 @@
 <script>
-  export let tooltip;
+  export let tooltip = null;
   export let style = "";
   export let mode = "";
 </script>

@@ -1,15 +1,18 @@
-<script>
-  export let footerInformation;
-</script>
-
 <footer>
-  <p class="inner">{footerInformation}</p>
+  <p class="inner">
+    Made with Svelte. Created by Philip Huang 2021. Visit the GitHub repo &nbsp;<a
+      href="https://github.com/PhilHuangSW/TexturePacker"
+    >
+      here.</a
+    >
+  </p>
 </footer>
 
 <style>
   footer {
     background-color: rgb(0, 93, 58);
     font-family: "Anton", "Helvetica", "Arial", sans-serif;
+    font-weight: 100;
     height: 1.2rem;
     font-size: 0.8rem;
     position: fixed;
@@ -29,5 +32,9 @@
     height: 100%;
     color: white;
     text-decoration: none;
+  }
+
+  a {
+    color: red;
   }
 </style>

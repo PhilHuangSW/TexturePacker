@@ -6,7 +6,6 @@
     lowerBound,
     upperBound,
     showOptions,
-    missedOrFilled,
   } from "../Store/rectangle-store.js";
   import { createEventDispatcher } from "svelte";
 
