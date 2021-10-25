@@ -1,109 +1,63 @@
-*Psst — looking for a more complete solution? Check out [SvelteKit](https://kit.svelte.dev), the official framework for building web applications of all sizes, with a beautiful development experience and flexible filesystem-based routing.*
+<a href="https://serene-boyd-a278d4.netlify.app/" alt="Texture Packer">
+  <img src="./public/images/filledGrid.JPG/"/></a>
+  
+<h1 align="center">Texture Packer Visualization</h1>
 
-*Looking for a shareable component template instead? You can [use SvelteKit for that as well](https://kit.svelte.dev/docs#packaging) or the older [sveltejs/component-template](https://github.com/sveltejs/component-template)*
+<p align="center">
+  <img src="https://img.shields.io/badge/version-v1.1-blue" />
+  <img src="https://img.shields.io/github/last-commit/PhilHuangSW/TexturePacker" />
+  <img src="https://img.shields.io/github/issues-raw/PhilHuangSW/TexturePacker" />
+  <img src="https://img.shields.io/github/issues-pr/PhilHuangSW/TexturePacker" />
+</p>
+<br>
 
----
+## Background
 
-# svelte app
+I was assigned a texture packer problem and as I researched more into the NP-hard problem, the more invested I was. As I built the algorithm, it was hard to visualize just what was happening at first. However, slowly but surely, I pieced together a way to visualize it in a way that looked both informative and captivating at the same time. 
 
-This is a project template for [Svelte](https://svelte.dev) apps. It lives at https://github.com/sveltejs/template.
+<br>
 
-To create a new project based on this template using [degit](https://github.com/Rich-Harris/degit):
+## Features
 
-```bash
-npx degit sveltejs/template svelte-app
-cd svelte-app
-```
+There were many features I kept wanting to add, but here are the ones I settled on:
+ - User options including width, height, number of rectangles, and min/max size of rectangles
+ - Timed Interval feature to visually see the algorithm at work
+ - Dynamically rendered statistics 
+ - Windowed Mode to automatically run the algorithm whenever the window size changes
+ - Near instant packing algorithm using Binary Search
 
-*Note that you will need to have [Node.js](https://nodejs.org) installed.*
+<br>
 
+## Technologies
 
-## Get started
+Website is created with: 
 
-Install the dependencies...
+<a href="https://svelte.dev/" alt="svelte main page">
+  <img src="https://img.shields.io/badge/Svelte-v3.0.0-orange.svg" /></a>
 
-```bash
-cd svelte-app
-npm install
-```
+<a href="https://rollupjs.org/guide/en/" alt="rollup main page">
+  <img src="https://img.shields.io/badge/rollup.js-v2.3.4-blue.svg" /></a>
 
-...then start [Rollup](https://rollupjs.org):
+<a href="" alt="JavaScript">
+  <img src="https://img.shields.io/badge/JavaScript-yellow.svg" /></a>
+  
+<a href="" alt="HTML">
+<img src="https://img.shields.io/badge/HTML-red.svg" /></a>
 
-```bash
-npm run dev
-```
+<a href="" alt="CSS">
+<img src="https://img.shields.io/badge/CSS-blue.svg" /></a>
 
-Navigate to [localhost:5000](http://localhost:5000). You should see your app running. Edit a component file in `src`, save it, and reload the page to see your changes.
+<br>
 
-By default, the server will only respond to requests from localhost. To allow connections from other computers, edit the `sirv` commands in package.json to include the option `--host 0.0.0.0`.
+## Future Improvements
 
-If you're using [Visual Studio Code](https://code.visualstudio.com/) we recommend installing the official extension [Svelte for VS Code](https://marketplace.visualstudio.com/items?itemName=svelte.svelte-vscode). If you are using other editors you may need to install a plugin in order to get syntax highlighting and intellisense.
+- [ ] Different algorithm implementations
+- [ ] Improve scaling algorithm
+- [ ] Improve mobile experience
+- [ ] UI update
 
-## Building and running in production mode
+<br>
 
-To create an optimised version of the app:
+## Contact Me
 
-```bash
-npm run build
-```
-
-You can run the newly built app with `npm run start`. This uses [sirv](https://github.com/lukeed/sirv), which is included in your package.json's `dependencies` so that the app will work when you deploy to platforms like [Heroku](https://heroku.com).
-
-
-## Single-page app mode
-
-By default, sirv will only respond to requests that match files in `public`. This is to maximise compatibility with static fileservers, allowing you to deploy your app anywhere.
-
-If you're building a single-page app (SPA) with multiple routes, sirv needs to be able to respond to requests for *any* path. You can make it so by editing the `"start"` command in package.json:
-
-```js
-"start": "sirv public --single"
-```
-
-## Using TypeScript
-
-This template comes with a script to set up a TypeScript development environment, you can run it immediately after cloning the template with:
-
-```bash
-node scripts/setupTypeScript.js
-```
-
-Or remove the script via:
-
-```bash
-rm scripts/setupTypeScript.js
-```
-
-If you want to use `baseUrl` or `path` aliases within your `tsconfig`, you need to set up `@rollup/plugin-alias` to tell Rollup to resolve the aliases. For more info, see [this StackOverflow question](https://stackoverflow.com/questions/63427935/setup-tsconfig-path-in-svelte).
-
-## Deploying to the web
-
-### With [Vercel](https://vercel.com)
-
-Install `vercel` if you haven't already:
-
-```bash
-npm install -g vercel
-```
-
-Then, from within your project folder:
-
-```bash
-cd public
-vercel deploy --name my-project
-```
-
-### With [surge](https://surge.sh/)
-
-Install `surge` if you haven't already:
-
-```bash
-npm install -g surge
-```
-
-Then, from within your project folder:
-
-```bash
-npm run build
-surge public my-project.surge.sh
-```
+If you have any suggestions on how I can improve the user experience or you just want to chat with me about 2d bin packing algorithms, email me at philip.sw.huang@gmail.com
