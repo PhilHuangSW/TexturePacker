@@ -11,6 +11,7 @@
 
   import LoadingSpinner from "./UI/LoadingSpinner.svelte";
   import Navbar from "./UI/Navbar.svelte";
+  import Footer from "./UI/Footer.svelte";
   import ConfigureInputs from "./TexturePacker/ConfigureInputs.svelte";
   import MainButtons from "./TexturePacker/MainButtons.svelte";
   import ResetButtons from "./TexturePacker/ResetButtons.svelte";
@@ -311,3 +312,5 @@
 {:else}
   <RectanglesText {output} {missed} />
 {/if}
+
+<Footer footerInformation="Made with Svelte. Created by Philip Huang 2021." />

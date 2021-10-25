@@ -1,25 +1,25 @@
 <script>
-  export let title;
+  export let footerInformation;
 </script>
 
-<!-- Simple navbar, unfortunately with the anchor tag, it renders the ENTIRE navbar as a link -->
-<nav>
-  <a href="/" class="inner">
-    {title}
-  </a>
-</nav>
-<div class="navbar-padding" />
+<footer>
+  <p class="inner">{footerInformation}</p>
+</footer>
 
 <style>
-  nav {
+  footer {
     background-color: rgb(0, 93, 58);
     font-family: "Anton", "Helvetica", "Arial", sans-serif;
-    height: 3rem;
-    font-size: 1.5rem;
+    height: 1.2rem;
+    font-size: 0.8rem;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    bottom: 0;
   }
 
   .inner {
-    justify-content: flex-start;
+    justify-content: flex-end;
     padding-left: 20px;
     padding-right: 20px;
     margin: auto;
@@ -29,9 +29,5 @@
     height: 100%;
     color: white;
     text-decoration: none;
-  }
-
-  .navbar-padding {
-    padding-bottom: 1rem;
   }
 </style>
