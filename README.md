@@ -9,13 +9,21 @@
   <img src="https://img.shields.io/github/issues-raw/PhilHuangSW/TexturePacker" />
   <img src="https://img.shields.io/github/issues-pr/PhilHuangSW/TexturePacker" />
 </p>
-<br>
 
 ## Background
 
 I was assigned a texture packer problem and as I researched more into the NP-hard problem, the more invested I was. As I built the algorithm, it was hard to visualize just what was happening at first. However, slowly but surely, I pieced together a way to visualize it in a way that looked both informative and captivating at the same time. 
 
-<br>
+## Setting up
+
+```shell
+git clone https://github.com/PhilHuangSW/TexturePacker.git
+cd TexturePacker
+npm install
+npm run dev
+```
+
+You can also visit https://serene-boyd-a278d4.netlify.app/ for the web version, hosted by Netlify.
 
 ## Features
 
@@ -25,8 +33,6 @@ There were many features I kept wanting to add, but here are the ones I settled 
  - Dynamically rendered statistics 
  - Windowed Mode to automatically run the algorithm whenever the window size changes
  - Near instant packing algorithm using Binary Search
-
-<br>
 
 ## Technologies
 
@@ -47,16 +53,12 @@ Website is created with:
 <a href="" alt="CSS">
 <img src="https://img.shields.io/badge/CSS-blue.svg" /></a>
 
-<br>
-
 ## Future Improvements
 
 - [ ] Different algorithm implementations
 - [ ] Improve scaling algorithm
 - [ ] Improve mobile experience
 - [ ] UI update
-
-<br>
 
 ## Contact Me
 
